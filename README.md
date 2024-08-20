@@ -348,5 +348,101 @@ defer: ejecuta el codigo al final, se puede usar más de una linea pero se recom
 
 
 
-
 ## <span class="seccion">  Estructuras de datos básicas <span>
+
+### <span class="clase"> 18. Array y slices  </span>
+```go
+//array (Son inmutables, no se pueden agregar mas elementos de los que estan declarados)
+var array [4]int
+array[0] = 1
+array[1] = 2
+fmt.Println(array, len(array), cap(array))
+
+//slice	no esta limitado a la cantidad de valores en instancia
+slice := []int{0, 1, 2, 3, 4, 5, 6}
+fmt.Println(slice, len(slice), cap(slice))
+
+//metodos en slice
+fmt.Println(slice[0])
+fmt.Println(slice[:3])		//imprime hasta la 3 posicion (empezando en 0)
+fmt.Println(slice[2:4])		//imprime desde el 2(incluido) hasta el 3(no lo incluye)
+fmt.Println(slice[4:])		//desde el 4 en adelante (incluye el 4)
+
+//append
+slice = append(slice, 7)
+fmt.Println(slice, len(slice))
+
+//append nueva list
+newSlice := []int{8, 9, 10}
+slice = append(slice, newSlice...)	//copia los elementos de newSlice a slice
+fmt.Println(slice, len(slice))
+```
+
+### <span class="clase"> 19. Recorrido de Slices con Range  </span>
+```go
+slice := []string{"hola", "que", "hace"}
+
+for i, valor := range slice {	//muestra indice y valor
+	fmt.Println(i, valor)
+}
+for i := range slice {			//muestra solo indice
+	fmt.Println(i)
+}
+for _, valor := range slice {	//muesta solo valor
+	fmt.Println(valor)
+}
+```
+
+### <span class="clase"> 20. Llave valor con Maps  </span>
+
+```go
+m := make(map[string]int)
+
+m["Jose"] = 14
+m["Pepito"] = 20
+
+fmt.Println(m)
+
+//recorrer map
+for i, v := range m {
+	fmt.Println(i, v)
+}
+
+//encontrar un valor
+value, ok := m["Jose"]	// ok nos indica si existe la llave
+value2 := m["Josep"] 	//si no existe la llave retorna 0
+fmt.Println(value, ok)	
+fmt.Println(value2)
+```
+
+### <span class="clase"> 21. Structs: La forma de hacer clases en Go  </span>
+```go
+package main 
+import "fmt"
+
+type car struct {
+	brand string
+	year  int
+}
+
+func main() { //funcion principal
+	//primera forma
+	myCar := car{brand: "Ford", year: 2020}
+	fmt.Println(myCar)
+
+	//segunda forma
+	var otherCar car
+	otherCar.brand = "Ferrai"
+	otherCar.year = 200
+	fmt.Println(otherCar)
+}
+```
+
+### <span class="clase"> 22. Modificadores de acceso en funciones y Structs  </span>
+Indicar si una propiedad va ser accesible unicamente desde el mismo paquete o tambien de otros
+
+
+
+## <span class="seccion"> Métodos e interfaces <span>
+
+### <span class="clase"> 23. Strucs y punteros </span>
